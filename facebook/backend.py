@@ -63,6 +63,8 @@ class FacebookBackend:
                 # with django-primate User has one field called 'name' instead
                 # of first_name and last_name
                 user.name = u'%s %s' % (user.first_name, user.last_name)
+                # in my project user has field city_id with facebook location
+                user.city_id = fb_profile.get('location', {'id': 0})['id']
                 user.save()
 
                 # Create the FacebookProfile
